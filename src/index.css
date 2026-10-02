@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+@import '@fontsource/space-grotesk/latin-400.css';
+@import '@fontsource/space-grotesk/latin-500.css';
+@import '@fontsource/space-grotesk/latin-700.css';
+@import '@fontsource/space-mono/latin-400.css';
+@import '@fontsource/silkscreen/latin-400.css';
+:root{font-family:'Space Grotesk',sans-serif;color:#eeeae1;background:#101310;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-weight:400;--mint:#a2f4cb;--muted:#a3aaa2;--line:#303830;--mono:'Space Mono',monospace;--pixel:'Silkscreen',monospace}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;min-width:320px}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer;color:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:5px}a:hover{color:var(--mint)}p{line-height:1.75}h1,h2,h3,p{margin:0}::selection{background:var(--mint);color:#101310}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}

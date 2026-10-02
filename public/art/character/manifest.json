@@ -1,0 +1,18 @@
+{
+  "frameSize": [
+    192,
+    192
+  ],
+  "layout": "3x3 reference atlas, fixed-cell extraction; no per-expression trim",
+  "states": {
+    "67": "/art/character/67.webp",
+    "neutral": "/art/character/neutral.webp",
+    "blinking": "/art/character/blinking.webp",
+    "talking": "/art/character/talking.webp",
+    "smiling": "/art/character/smiling.webp",
+    "sleepy": "/art/character/sleepy.webp",
+    "annoyed": "/art/character/annoyed.webp",
+    "celebrating": "/art/character/celebrating.webp",
+    "gear5": "/art/character/gear5.webp"
+  }
+}
