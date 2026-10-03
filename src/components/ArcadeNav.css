@@ -1,46 +1,212 @@
 /* A compact stage selector, with tactile keys and a pixel selection marker. */
-header.arcade-nav{background:#0d131ef5;border-bottom:1px solid #394553;box-shadow:0 3px 0 #070c13}
-header.arcade-nav .nav-shell{min-height:86px;max-width:1440px;padding:0 34px;gap:24px;justify-content:space-between}
-.arcade-nav-left{min-width:0}
-header.arcade-nav .nav-shell nav{display:flex;position:static;align-items:center;gap:7px;padding:7px;background:#090f18;border:1px solid #2a3847;box-shadow:inset 0 2px 0 #03070d;font-family:var(--pixel)}
-header.arcade-nav .nav-shell nav a{display:flex;align-items:center;gap:9px;padding:11px 12px;border:1px solid transparent;color:#b8c3ce;font-size:11px;line-height:1.5;white-space:nowrap;transition:background .15s,color .15s,transform .15s}
-.nav-stage-number{font:10px var(--mono);color:#718694}
-.nav-stage-cursor{font:15px/1 var(--mono);visibility:hidden}
-header.arcade-nav .nav-shell nav a[aria-current=location]{background:#b9d4a8;color:#15251d;border-color:#dfebc9;box-shadow:2px 2px 0 #03070d}
-header.arcade-nav .nav-shell nav a[aria-current=location] .nav-stage-number{color:#415d46}
-header.arcade-nav .nav-shell nav a[aria-current=location] .nav-stage-cursor{visibility:visible}
-header.arcade-nav .nav-shell nav a[aria-current=location]:after{display:none}
-header.arcade-nav .nav-shell nav a:hover{background:#243530;color:#e5efcf;transform:translateY(-2px)}
-header.arcade-nav .nav-shell nav a:hover .nav-stage-number{color:#b7c9a8}
-header.arcade-nav .nav-shell nav a:hover .nav-stage-cursor{visibility:visible}
-header.arcade-nav .terminal-button{display:flex;align-items:center;gap:8px;margin-left:5px;padding:11px 13px;background:#201f22;border:1px solid #75644e;color:#e3c18e;font:11px/1.5 var(--pixel);white-space:nowrap;box-shadow:2px 2px 0 #03070d}
-header.arcade-nav .terminal-button span{margin:0;color:#e3c18e;font:13px/1 var(--mono)}
-header.arcade-nav .terminal-button:hover{background:#393127;color:#fff0cf}
-header.arcade-nav .nav-end{margin-left:auto;flex-shrink:0}
-header.arcade-nav .face-dialogue{display:none}
-header.arcade-nav .face-companion{min-height:76px}
-header.arcade-nav .companion-portrait{width:68px;height:68px}
-header.arcade-nav .menu-button{display:none}
-@media(max-width:1100px){
- header.arcade-nav .nav-shell{padding-inline:22px;gap:15px}
- header.arcade-nav .nav-shell nav{gap:3px;padding:5px}
- header.arcade-nav .nav-shell nav a{gap:6px;padding:10px 8px;font-size:10px}
- header.arcade-nav .terminal-button{padding:10px;font-size:10px}
- .nav-stage-cursor{display:none}
+header.arcade-nav {
+  background: #0d131ef5;
+  border-bottom: 1px solid #394553;
+  box-shadow: 0 3px 0 #070c13;
 }
-@media(max-width:1200px){
- header.arcade-nav .nav-shell{min-height:70px;padding-inline:20px}
- header.arcade-nav .menu-button{display:flex;align-items:center;gap:12px;padding:12px 15px;background:#16231f;border:1px solid #779078;box-shadow:3px 3px 0 #05090e;color:#d8e7c4;font:11px/1.5 var(--pixel)}
- header.arcade-nav .menu-button[aria-expanded=true]{background:#b9d4a8;color:#15251d}
- header.arcade-nav .nav-shell nav{display:none;position:absolute;top:calc(100% + 7px);left:20px;right:20px;padding:12px;background:#0d1622;border:1px solid #516456;box-shadow:5px 5px 0 #05090e;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
- header.arcade-nav .nav-shell nav.expanded{display:grid}
- header.arcade-nav .nav-shell nav a{font-size:11px;padding:14px 10px;gap:10px;border:1px solid #293c43}
- header.arcade-nav .terminal-button{margin:0;justify-content:center;font-size:11px;padding:14px 10px}
- header.arcade-nav .face-companion{min-height:64px}
- header.arcade-nav .companion-portrait{width:56px;height:56px}
- .nav-stage-cursor{display:inline;margin-left:auto}
+header.arcade-nav .nav-shell {
+  min-height: 86px;
+  max-width: 1440px;
+  padding: 0 34px;
+  gap: 24px;
+  justify-content: space-between;
+}
+.arcade-nav-left {
+  min-width: 0;
+}
+header.arcade-nav .nav-shell nav {
+  display: flex;
+  position: static;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  background: #090f18;
+  border: 1px solid #2a3847;
+  box-shadow: inset 0 2px 0 #03070d;
+  font-family: var(--pixel);
+}
+header.arcade-nav .nav-shell nav a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  color: #b8c3ce;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.15s;
+}
+.nav-stage-number {
+  font: 10px var(--mono);
+  color: #718694;
+}
+.nav-stage-cursor {
+  font: 15px/1 var(--mono);
+  visibility: hidden;
+}
+header.arcade-nav .nav-shell nav a[aria-current='location'] {
+  background: #b9d4a8;
+  color: #15251d;
+  border-color: #dfebc9;
+  box-shadow: 2px 2px 0 #03070d;
+}
+header.arcade-nav .nav-shell nav a[aria-current='location'] .nav-stage-number {
+  color: #415d46;
+}
+header.arcade-nav .nav-shell nav a[aria-current='location'] .nav-stage-cursor {
+  visibility: visible;
+}
+header.arcade-nav .nav-shell nav a[aria-current='location']:after {
+  display: none;
+}
+header.arcade-nav .nav-shell nav a:hover {
+  background: #243530;
+  color: #e5efcf;
+  transform: translateY(-2px);
+}
+header.arcade-nav .nav-shell nav a:hover .nav-stage-number {
+  color: #b7c9a8;
+}
+header.arcade-nav .nav-shell nav a:hover .nav-stage-cursor {
+  visibility: visible;
+}
+header.arcade-nav .terminal-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 5px;
+  padding: 11px 13px;
+  background: #201f22;
+  border: 1px solid #75644e;
+  color: #e3c18e;
+  font: 11px/1.5 var(--pixel);
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 #03070d;
+}
+header.arcade-nav .terminal-button span {
+  margin: 0;
+  color: #e3c18e;
+  font: 13px/1 var(--mono);
+}
+header.arcade-nav .terminal-button:hover {
+  background: #393127;
+  color: #fff0cf;
+}
+header.arcade-nav .nav-end {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+header.arcade-nav .face-dialogue {
+  display: none;
+}
+header.arcade-nav .face-companion {
+  min-height: 76px;
+}
+header.arcade-nav .companion-portrait {
+  width: 68px;
+  height: 68px;
+}
+header.arcade-nav .menu-button {
+  display: none;
+}
+@media (max-width: 1100px) {
+  header.arcade-nav .nav-shell {
+    padding-inline: 22px;
+    gap: 15px;
+  }
+  header.arcade-nav .nav-shell nav {
+    gap: 3px;
+    padding: 5px;
+  }
+  header.arcade-nav .nav-shell nav a {
+    gap: 6px;
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+  header.arcade-nav .terminal-button {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .nav-stage-cursor {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  header.arcade-nav .nav-shell {
+    min-height: 70px;
+    padding-inline: 20px;
+  }
+  header.arcade-nav .menu-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #16231f;
+    border: 1px solid #779078;
+    box-shadow: 3px 3px 0 #05090e;
+    color: #d8e7c4;
+    font: 11px/1.5 var(--pixel);
+  }
+  header.arcade-nav .menu-button[aria-expanded='true'] {
+    background: #b9d4a8;
+    color: #15251d;
+  }
+  header.arcade-nav .nav-shell nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 20px;
+    right: 20px;
+    padding: 12px;
+    background: #0d1622;
+    border: 1px solid #516456;
+    box-shadow: 5px 5px 0 #05090e;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  header.arcade-nav .nav-shell nav.expanded {
+    display: grid;
+  }
+  header.arcade-nav .nav-shell nav a {
+    font-size: 11px;
+    padding: 14px 10px;
+    gap: 10px;
+    border: 1px solid #293c43;
+  }
+  header.arcade-nav .terminal-button {
+    margin: 0;
+    justify-content: center;
+    font-size: 11px;
+    padding: 14px 10px;
+  }
+  header.arcade-nav .face-companion {
+    min-height: 64px;
+  }
+  header.arcade-nav .companion-portrait {
+    width: 56px;
+    height: 56px;
+  }
+  .nav-stage-cursor {
+    display: inline;
+    margin-left: auto;
+  }
 }
 /* Keep the pixel face and both hands readable at navigation size. */
-header.arcade-nav .companion-portrait{width:84px;height:84px}
-@media(max-width:1200px){header.arcade-nav .companion-portrait{width:64px;height:64px}}
-header.arcade-nav .nav-shell nav a,header.arcade-nav .terminal-button{font-size:13px}
+header.arcade-nav .companion-portrait {
+  width: 84px;
+  height: 84px;
+}
+@media (max-width: 1200px) {
+  header.arcade-nav .companion-portrait {
+    width: 64px;
+    height: 64px;
+  }
+}
+header.arcade-nav .nav-shell nav a,
+header.arcade-nav .terminal-button {
+  font-size: 13px;
+}

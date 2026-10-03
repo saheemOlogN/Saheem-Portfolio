@@ -1,7 +1,248 @@
-.character-face{overflow:visible;display:block}.avatar-head{transform-origin:80px 90px}.eye-closed,.sleep-lids,.mouth-talk,.mouth-yawn,.avatar-clouds,.avatar-hands,.avatar-zzz{display:none}.character-sleepy .sleep-lids,.character-sleepy .avatar-zzz,.character-gear5 .avatar-clouds,.character-67 .avatar-hands{display:block}.character-blinking .eye-open{display:none}.character-blinking .eye-closed{display:block}.character-talking .mouth-rest{display:none}.character-talking .mouth-talk{display:block}.character-face[data-animated=true] .avatar-head{animation:avatar-idle 6s ease-in-out infinite}.character-face[data-animated=true] .avatar-gaze{animation:avatar-gaze 7s steps(1) infinite}.character-face[data-animated=true] .eye-open{animation:avatar-blink 4.6s steps(1) infinite;transform-box:fill-box;transform-origin:center}.character-talking[data-animated=true] .mouth-talk{animation:avatar-talk .38s steps(2) infinite;transform-origin:81px 123px}.character-smiling .avatar-brows,.character-celebrating .avatar-brows{transform:translateY(-2px)}.character-sleepy[data-animated=true] .mouth-rest{animation:yawn-hide 3s steps(1) both}.character-sleepy[data-animated=true] .mouth-yawn{display:block;animation:yawn-show 3s steps(1) both}.character-sleepy[data-animated=true] .avatar-zzz{animation:zzz-drift 3s ease-out both}.character-celebrating[data-animated=true] .avatar-head{animation:avatar-celebrate .65s ease-out 2}.character-gear5[data-animated=true] .avatar-hair{animation:hair-play 1.5s ease-in-out 3;transform-origin:80px 50px}.character-67[data-animated=true] .hand-left{animation:hand-gesture .65s ease-in-out 5}.character-67[data-animated=true] .hand-right{animation:hand-gesture .65s ease-in-out -.325s 5}.character-face[data-running=false] *{animation-play-state:paused!important}.character-face[data-animated=false] *{animation:none!important}.character-face[data-animated=false] .mouth-yawn{display:none}
-@keyframes avatar-idle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-1px) rotate(1deg)}}@keyframes avatar-gaze{0%,35%,100%{transform:translateX(0)}40%,60%{transform:translateX(2px)}70%,85%{transform:translateX(-2px)}}@keyframes avatar-blink{0%,44%,48%,100%{transform:scaleY(1)}45%,47%{transform:scaleY(.08)}}@keyframes avatar-talk{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}@keyframes yawn-show{0%,25%,85%,100%{opacity:0}30%,80%{opacity:1}}@keyframes yawn-hide{0%,25%,85%,100%{opacity:1}30%,80%{opacity:0}}@keyframes zzz-drift{from{opacity:0;transform:translateY(5px)}40%,80%{opacity:1}to{opacity:0;transform:translateY(-5px)}}@keyframes avatar-celebrate{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}70%{transform:translateY(1px)}}@keyframes hair-play{50%{transform:translateY(-2px) rotate(-2deg)}}@keyframes hand-gesture{0%,100%{transform:translateY(3px)}50%{transform:translateY(-7px)}}
-@media(prefers-reduced-motion:reduce){.character-face *{animation:none!important}}
+.character-face {
+  overflow: visible;
+  display: block;
+}
+.avatar-head {
+  transform-origin: 80px 90px;
+}
+.eye-closed,
+.sleep-lids,
+.mouth-talk,
+.mouth-yawn,
+.avatar-clouds,
+.avatar-hands,
+.avatar-zzz {
+  display: none;
+}
+.character-sleepy .sleep-lids,
+.character-sleepy .avatar-zzz,
+.character-gear5 .avatar-clouds,
+.character-67 .avatar-hands {
+  display: block;
+}
+.character-blinking .eye-open {
+  display: none;
+}
+.character-blinking .eye-closed {
+  display: block;
+}
+.character-talking .mouth-rest {
+  display: none;
+}
+.character-talking .mouth-talk {
+  display: block;
+}
+.character-face[data-animated='true'] .avatar-head {
+  animation: avatar-idle 6s ease-in-out infinite;
+}
+.character-face[data-animated='true'] .avatar-gaze {
+  animation: avatar-gaze 7s steps(1) infinite;
+}
+.character-face[data-animated='true'] .eye-open {
+  animation: avatar-blink 4.6s steps(1) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.character-talking[data-animated='true'] .mouth-talk {
+  animation: avatar-talk 0.38s steps(2) infinite;
+  transform-origin: 81px 123px;
+}
+.character-smiling .avatar-brows,
+.character-celebrating .avatar-brows {
+  transform: translateY(-2px);
+}
+.character-sleepy[data-animated='true'] .mouth-rest {
+  animation: yawn-hide 3s steps(1) both;
+}
+.character-sleepy[data-animated='true'] .mouth-yawn {
+  display: block;
+  animation: yawn-show 3s steps(1) both;
+}
+.character-sleepy[data-animated='true'] .avatar-zzz {
+  animation: zzz-drift 3s ease-out both;
+}
+.character-celebrating[data-animated='true'] .avatar-head {
+  animation: avatar-celebrate 0.65s ease-out 2;
+}
+.character-gear5[data-animated='true'] .avatar-hair {
+  animation: hair-play 1.5s ease-in-out 3;
+  transform-origin: 80px 50px;
+}
+.character-67[data-animated='true'] .hand-left {
+  animation: hand-gesture 0.65s ease-in-out 5;
+}
+.character-67[data-animated='true'] .hand-right {
+  animation: hand-gesture 0.65s ease-in-out -0.325s 5;
+}
+.character-face[data-running='false'] * {
+  animation-play-state: paused !important;
+}
+.character-face[data-animated='false'] * {
+  animation: none !important;
+}
+.character-face[data-animated='false'] .mouth-yawn {
+  display: none;
+}
+@keyframes avatar-idle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-1px) rotate(1deg);
+  }
+}
+@keyframes avatar-gaze {
+  0%,
+  35%,
+  100% {
+    transform: translateX(0);
+  }
+  40%,
+  60% {
+    transform: translateX(2px);
+  }
+  70%,
+  85% {
+    transform: translateX(-2px);
+  }
+}
+@keyframes avatar-blink {
+  0%,
+  44%,
+  48%,
+  100% {
+    transform: scaleY(1);
+  }
+  45%,
+  47% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes avatar-talk {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes yawn-show {
+  0%,
+  25%,
+  85%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  80% {
+    opacity: 1;
+  }
+}
+@keyframes yawn-hide {
+  0%,
+  25%,
+  85%,
+  100% {
+    opacity: 1;
+  }
+  30%,
+  80% {
+    opacity: 0;
+  }
+}
+@keyframes zzz-drift {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  40%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+@keyframes avatar-celebrate {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  70% {
+    transform: translateY(1px);
+  }
+}
+@keyframes hair-play {
+  50% {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+}
+@keyframes hand-gesture {
+  0%,
+  100% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .character-face * {
+    animation: none !important;
+  }
+}
 
-
-.avatar-cheeks,.avatar-brows,.avatar-hair,.avatar-mouth{transition:fill .2s,opacity .2s,transform .2s}.avatar-head{transition:transform .2s}.character-face[data-animated=true]:not(.character-blinking) .eye-closed{display:block;opacity:0;animation:closed-eye 4.6s steps(1) infinite}@keyframes closed-eye{0%,44%,48%,100%{opacity:0}45%,47%{opacity:1}}.character-annoyed .mouth-rest{transform:rotate(6deg);transform-origin:80px 124px}.character-curious .brow-left{transform:translateY(-2px)}
-@media(prefers-reduced-motion:reduce){.character-face *{animation:none!important;transition:none!important}.eye-closed{opacity:0!important}.character-blinking .eye-closed{opacity:1!important}}
+.avatar-cheeks,
+.avatar-brows,
+.avatar-hair,
+.avatar-mouth {
+  transition:
+    fill 0.2s,
+    opacity 0.2s,
+    transform 0.2s;
+}
+.avatar-head {
+  transition: transform 0.2s;
+}
+.character-face[data-animated='true']:not(.character-blinking) .eye-closed {
+  display: block;
+  opacity: 0;
+  animation: closed-eye 4.6s steps(1) infinite;
+}
+@keyframes closed-eye {
+  0%,
+  44%,
+  48%,
+  100% {
+    opacity: 0;
+  }
+  45%,
+  47% {
+    opacity: 1;
+  }
+}
+.character-annoyed .mouth-rest {
+  transform: rotate(6deg);
+  transform-origin: 80px 124px;
+}
+.character-curious .brow-left {
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .character-face * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .eye-closed {
+    opacity: 0 !important;
+  }
+  .character-blinking .eye-closed {
+    opacity: 1 !important;
+  }
+}

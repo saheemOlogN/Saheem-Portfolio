@@ -1,7 +1,133 @@
-.playable-quest{width:100%;max-width:570px;justify-self:center}
-.quest-scoreboard{display:flex;justify-content:space-between;gap:10px;padding:10px 8px;font:13px/1.5 var(--mono);color:#bdc7d1}.quest-scoreboard strong{color:#e4d39f}.quest-scoreboard>span:last-child{color:#dba59c}
-.quest-board{position:relative;border:1px solid #597e79;box-shadow:4px 4px #070c16;background:#0c1320;border-radius:3px;overflow:hidden}.quest-board:focus-visible{outline:2px solid #e1ce93;outline-offset:4px}.quest-board>svg{display:block;width:100%;height:auto}
-.quest-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px;text-align:center;background:#0b1320ec}.quest-overlay h3{font:clamp(16px,1.8vw,23px)/1.5 var(--pixel);color:#e9dbb8}.quest-overlay p{max-width:310px;font-size:16px;color:#bcc9d4}.quest-overlay .small-button{font-size:15px;padding:11px 22px}
-.quest-game-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:53px;padding:8px 3px}.quest-game-actions p{font-size:14px;color:#c4d3c0}.quest-game-actions .small-button{padding:6px 12px;font-size:13px}
-.quest-dpad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,40px);gap:5px;justify-content:center}.quest-dpad button{background:#192c32;color:#e6dfbf;border:1px solid #6e9285;font:22px var(--mono);touch-action:manipulation;user-select:none}.quest-dpad button:active:not(:disabled){background:#b6cfa8;color:#14221c}.quest-dpad button:disabled{opacity:.4}.quest-direction-up{grid-column:2}.quest-direction-left{grid-column:1;grid-row:2}.quest-direction-down{grid-column:2;grid-row:2}.quest-direction-right{grid-column:3;grid-row:2}.playable-quest .quest-caption{font-size:13px;margin-top:12px}
-@media(max-width:420px){.quest-scoreboard{font-size:11px}.quest-overlay{padding:14px;gap:10px}.quest-overlay p{font-size:14px}.quest-game-actions p{font-size:12px}}
+.playable-quest {
+  width: 100%;
+  max-width: 570px;
+  justify-self: center;
+}
+.quest-scoreboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 8px;
+  font: 13px/1.5 var(--mono);
+  color: #bdc7d1;
+}
+.quest-scoreboard strong {
+  color: #e4d39f;
+}
+.quest-scoreboard > span:last-child {
+  color: #dba59c;
+}
+.quest-board {
+  position: relative;
+  border: 1px solid #597e79;
+  box-shadow: 4px 4px #070c16;
+  background: #0c1320;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quest-board:focus-visible {
+  outline: 2px solid #e1ce93;
+  outline-offset: 4px;
+}
+.quest-board > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.quest-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 22px;
+  text-align: center;
+  background: #0b1320ec;
+}
+.quest-overlay h3 {
+  font: clamp(16px, 1.8vw, 23px) / 1.5 var(--pixel);
+  color: #e9dbb8;
+}
+.quest-overlay p {
+  max-width: 310px;
+  font-size: 16px;
+  color: #bcc9d4;
+}
+.quest-overlay .small-button {
+  font-size: 15px;
+  padding: 11px 22px;
+}
+.quest-game-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 53px;
+  padding: 8px 3px;
+}
+.quest-game-actions p {
+  font-size: 14px;
+  color: #c4d3c0;
+}
+.quest-game-actions .small-button {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.quest-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 44px);
+  grid-template-rows: repeat(2, 40px);
+  gap: 5px;
+  justify-content: center;
+}
+.quest-dpad button {
+  background: #192c32;
+  color: #e6dfbf;
+  border: 1px solid #6e9285;
+  font: 22px var(--mono);
+  touch-action: manipulation;
+  user-select: none;
+}
+.quest-dpad button:active:not(:disabled) {
+  background: #b6cfa8;
+  color: #14221c;
+}
+.quest-dpad button:disabled {
+  opacity: 0.4;
+}
+.quest-direction-up {
+  grid-column: 2;
+}
+.quest-direction-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+.quest-direction-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+.quest-direction-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+.playable-quest .quest-caption {
+  font-size: 13px;
+  margin-top: 12px;
+}
+@media (max-width: 420px) {
+  .quest-scoreboard {
+    font-size: 11px;
+  }
+  .quest-overlay {
+    padding: 14px;
+    gap: 10px;
+  }
+  .quest-overlay p {
+    font-size: 14px;
+  }
+  .quest-game-actions p {
+    font-size: 12px;
+  }
+}

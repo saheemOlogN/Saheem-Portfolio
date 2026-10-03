@@ -2,10 +2,94 @@ import { useState, type MouseEvent, type ReactNode } from 'react'
 import './ArcadeProject.css'
 
 /** React Bits Pixel Transition's grid reveal, adapted to CSS and the installed Motion stack. */
-export default function ArcadeProject({ name, index, image, onOpen }: { name: string; index: number; image?: string | null; onOpen: (e: MouseEvent<HTMLButtonElement>) => void }) {
- const [revealing, setRevealing] = useState(false)
- const artwork: ReactNode = image ? <img src={image} alt="Actual Urban Tracker sign-in screen" loading="lazy" /> : <svg viewBox="0 0 400 240" aria-hidden="true"><path d="M62 116H338M200 48V190" stroke="#425d69" strokeWidth="2" strokeDasharray="4 7"/><rect x="139" y="30" width="122" height="180" fill="#1e3343" stroke="#b9d2ad" strokeWidth="3"/><circle cx="200" cy="83" r="23" fill="#d0b9d6"/><path d="M164 147q36-45 72 0" fill="#d0b9d6"/><path d="M162 170h75m-75 15h50" stroke="#819e95" strokeWidth="4"/><rect x="37" y="92" width="48" height="48" fill="#cbb579"/><path d="m47 113 11 11 19-24" fill="none" stroke="#172a39" strokeWidth="4"/><rect x="315" y="92" width="48" height="48" fill="#9bbab0"/><path d="M326 108h26v14h-16l-7 7v-7h-3Z" fill="#172a39"/></svg>
- function reveal() { setRevealing(false); requestAnimationFrame(() => setRevealing(true)) }
- return <div className={`arcade-machine machine-${index}`}><div className="machine-marquee"><span>{index === 0 ? 'Social connections' : 'City connections'}</span><span className="machine-light" aria-hidden="true"/></div><button className={`machine-screen ${revealing ? 'screen-reveal' : ''}`} aria-label={`Open ${name} project details`} onPointerEnter={e => { if(e.pointerType==='mouse') reveal() }} onFocus={reveal} onClick={onOpen}><span className="screen-art">{artwork}</span><span className="screen-grid" aria-hidden="true">{Array.from({length:48},(_,i)=><span key={i} style={{animationDelay:`${((i*13)%48)*5}ms`}}/>)}</span><span className="screen-action">Explore project <span aria-hidden="true">↗</span></span></button><div className="machine-controls" aria-hidden="true"><span className="mini-stick"/><span className="mini-button"/><span className="mini-button"/><span className="machine-slot"/></div><p className="machine-caption">{image ? 'Actual sign-in screen · Urban Tracker' : 'Original project illustration'}</p></div>
+export default function ArcadeProject({
+  name,
+  index,
+  image,
+  onOpen,
+}: {
+  name: string
+  index: number
+  image?: string | null
+  onOpen: (e: MouseEvent<HTMLButtonElement>) => void
+}) {
+  const [revealing, setRevealing] = useState(false)
+  const artwork: ReactNode = image ? (
+    <img src={image} alt="Actual Urban Tracker sign-in screen" loading="lazy" />
+  ) : (
+    <svg viewBox="0 0 400 240" aria-hidden="true">
+      <path
+        d="M62 116H338M200 48V190"
+        stroke="#425d69"
+        strokeWidth="2"
+        strokeDasharray="4 7"
+      />
+      <rect
+        x="139"
+        y="30"
+        width="122"
+        height="180"
+        fill="#1e3343"
+        stroke="#b9d2ad"
+        strokeWidth="3"
+      />
+      <circle cx="200" cy="83" r="23" fill="#d0b9d6" />
+      <path d="M164 147q36-45 72 0" fill="#d0b9d6" />
+      <path d="M162 170h75m-75 15h50" stroke="#819e95" strokeWidth="4" />
+      <rect x="37" y="92" width="48" height="48" fill="#cbb579" />
+      <path
+        d="m47 113 11 11 19-24"
+        fill="none"
+        stroke="#172a39"
+        strokeWidth="4"
+      />
+      <rect x="315" y="92" width="48" height="48" fill="#9bbab0" />
+      <path d="M326 108h26v14h-16l-7 7v-7h-3Z" fill="#172a39" />
+    </svg>
+  )
+  function reveal() {
+    setRevealing(false)
+    requestAnimationFrame(() => setRevealing(true))
+  }
+  return (
+    <div className={`arcade-machine machine-${index}`}>
+      <div className="machine-marquee">
+        <span>{index === 0 ? 'Social connections' : 'City connections'}</span>
+        <span className="machine-light" aria-hidden="true" />
+      </div>
+      <button
+        className={`machine-screen ${revealing ? 'screen-reveal' : ''}`}
+        aria-label={`Open ${name} project details`}
+        onPointerEnter={(e) => {
+          if (e.pointerType === 'mouse') reveal()
+        }}
+        onFocus={reveal}
+        onClick={onOpen}
+      >
+        <span className="screen-art">{artwork}</span>
+        <span className="screen-grid" aria-hidden="true">
+          {Array.from({ length: 48 }, (_, i) => (
+            <span
+              key={i}
+              style={{ animationDelay: `${((i * 13) % 48) * 5}ms` }}
+            />
+          ))}
+        </span>
+        <span className="screen-action">
+          Explore project <span aria-hidden="true">↗</span>
+        </span>
+      </button>
+      <div className="machine-controls" aria-hidden="true">
+        <span className="mini-stick" />
+        <span className="mini-button" />
+        <span className="mini-button" />
+        <span className="machine-slot" />
+      </div>
+      <p className="machine-caption">
+        {image
+          ? 'Actual sign-in screen · Urban Tracker'
+          : 'Original project illustration'}
+      </p>
+    </div>
+  )
 }
-

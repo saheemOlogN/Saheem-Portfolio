@@ -1,19 +1,122 @@
-.hire-dialog{width:min(680px,calc(100% - 28px));max-height:90dvh;margin:auto;padding:30px;border:1px solid #6e8478;background:#101b28;color:#e8dec6;box-shadow:7px 7px #060c16;overflow-y:auto}
-.hire-dialog::backdrop{background:#070b1660;backdrop-filter:blur(9px)}
-.hire-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
-.hire-heading h2{font:clamp(21px,3vw,28px)/1.5 var(--pixel)}
-.hire-heading>button{border:0;background:transparent;font-size:28px;line-height:1;padding:5px;color:#cbd9c6}
-.hire-intro{font-size:17px;color:#b6c3d0;margin:12px 0 24px}
-.hire-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.hire-fields label{display:flex;flex-wrap:wrap;align-content:start;gap:5px;font-size:15px;color:#dbe2d8;min-width:0}
-.hire-fields label>span{color:#a5b4c2;font-size:13px}
-.hire-fields input,.hire-fields select,.hire-fields textarea{width:100%;min-width:0;margin-top:4px;padding:11px 12px;border:1px solid #45596b;border-radius:0;background:#0b1420;color:#edf0e5;font:16px/1.5 'Space Grotesk',sans-serif;color-scheme:dark}
-.hire-fields textarea{resize:vertical;min-height:125px;max-height:300px}
-.hire-fields input::placeholder,.hire-fields textarea::placeholder{color:#8d9ead}
-.hire-fields :is(input,select,textarea):focus-visible{outline:2px solid #b9d4a8;outline-offset:2px}
-.hire-details{grid-column:1/-1}
-.hire-note{margin-top:22px;font-size:14px;color:#b5c2cd}
-.hire-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
-.hire-status{font-size:14px;color:#bfd8b2;margin-top:17px;overflow-wrap:anywhere}
-.hire-status:empty{display:none}
-@media(max-width:520px){.hire-dialog{padding:22px 18px}.hire-fields{grid-template-columns:1fr;gap:15px}.hire-actions .arcade-button{flex:1;font-size:12px;padding:13px 10px;min-width:0}}
+.hire-dialog {
+  width: min(680px, calc(100% - 28px));
+  max-height: 90dvh;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #6e8478;
+  background: #101b28;
+  color: #e8dec6;
+  box-shadow: 7px 7px #060c16;
+  overflow-y: auto;
+}
+.hire-dialog::backdrop {
+  background: #070b1660;
+  backdrop-filter: blur(9px);
+}
+.hire-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.hire-heading h2 {
+  font: clamp(21px, 3vw, 28px) / 1.5 var(--pixel);
+}
+.hire-heading > button {
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  padding: 5px;
+  color: #cbd9c6;
+}
+.hire-intro {
+  font-size: 17px;
+  color: #b6c3d0;
+  margin: 12px 0 24px;
+}
+.hire-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.hire-fields label {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 5px;
+  font-size: 15px;
+  color: #dbe2d8;
+  min-width: 0;
+}
+.hire-fields label > span {
+  color: #a5b4c2;
+  font-size: 13px;
+}
+.hire-fields input,
+.hire-fields select,
+.hire-fields textarea {
+  width: 100%;
+  min-width: 0;
+  margin-top: 4px;
+  padding: 11px 12px;
+  border: 1px solid #45596b;
+  border-radius: 0;
+  background: #0b1420;
+  color: #edf0e5;
+  font:
+    16px/1.5 'Space Grotesk',
+    sans-serif;
+  color-scheme: dark;
+}
+.hire-fields textarea {
+  resize: vertical;
+  min-height: 125px;
+  max-height: 300px;
+}
+.hire-fields input::placeholder,
+.hire-fields textarea::placeholder {
+  color: #8d9ead;
+}
+.hire-fields :is(input, select, textarea):focus-visible {
+  outline: 2px solid #b9d4a8;
+  outline-offset: 2px;
+}
+.hire-details {
+  grid-column: 1/-1;
+}
+.hire-note {
+  margin-top: 22px;
+  font-size: 14px;
+  color: #b5c2cd;
+}
+.hire-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+}
+.hire-status {
+  font-size: 14px;
+  color: #bfd8b2;
+  margin-top: 17px;
+  overflow-wrap: anywhere;
+}
+.hire-status:empty {
+  display: none;
+}
+@media (max-width: 520px) {
+  .hire-dialog {
+    padding: 22px 18px;
+  }
+  .hire-fields {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .hire-actions .arcade-button {
+    flex: 1;
+    font-size: 12px;
+    padding: 13px 10px;
+    min-width: 0;
+  }
+}
