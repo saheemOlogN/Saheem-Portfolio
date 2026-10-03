@@ -17,7 +17,7 @@ export class CompanionDirector {
  private nextSpecial: number
  private specialRemaining = 0
  private random: () => number
- private sixSevenNext = true
+ private sixSevenRemaining = 5000
  private lastSpecial: AvatarMode = '67'
  private lineIndex: Partial<Record<AvatarMode, number>> = {idle: 0}
  constructor(random: () => number = Math.random) { this.random = random; this.nextSpecial = this.delay() }
@@ -28,12 +28,23 @@ export class CompanionDirector {
  }
  private enter(mode: AvatarMode) { this.mode = mode; this.speak() }
  setSection(section: string) {
-  this.skills = section === 'skills'; this.specialRemaining = 0
+  this.skills = section === 'skills'
+  if (this.mode === '67' && this.specialRemaining > 0) return
+  this.specialRemaining = 0
   this.enter(this.skills ? 'gear5' : 'idle'); this.elapsed = 0; this.nextSpecial = this.delay()
  }
- trigger(mode: AvatarMode) { this.enter(mode); this.specialRemaining = 6000 }
+ trigger(mode: AvatarMode) {
+  if (this.mode === '67' && this.specialRemaining > 0) return
+  this.enter(mode); this.specialRemaining = 6000
+  if (mode === '67') this.sixSevenRemaining = 24000 + this.random() * 10000
+ }
  advance(milliseconds: number) {
   this.dialogueElapsed += milliseconds
+  this.sixSevenRemaining -= milliseconds
+  if (this.sixSevenRemaining <= 0 && this.mode !== '67') {
+   this.trigger('67')
+   return this.mode
+  }
   if (this.specialRemaining > 0) {
    this.specialRemaining -= milliseconds
    if (this.specialRemaining <= 0) { this.enter(this.skills ? 'gear5' : 'idle'); this.elapsed = 0; this.nextSpecial = this.delay() }
@@ -41,8 +52,8 @@ export class CompanionDirector {
    this.elapsed += milliseconds
    if (this.elapsed >= this.nextSpecial) {
     const choices: AvatarMode[] = ['dance','thinking','sleepy','celebrate'].filter(mode => mode !== this.lastSpecial) as AvatarMode[]
-    const next = this.sixSevenNext ? '67' : choices[Math.min(choices.length-1, Math.floor(this.random()*choices.length))]
-    this.sixSevenNext = !this.sixSevenNext; this.lastSpecial = next; this.trigger(next)
+    const next = choices[Math.min(choices.length-1, Math.floor(this.random()*choices.length))]
+    this.lastSpecial = next; this.trigger(next)
    }
   }
   if (this.dialogueElapsed >= 8500) this.speak()

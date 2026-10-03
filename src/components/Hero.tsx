@@ -9,6 +9,7 @@ import Character from './Character'
 export { Companion, signalCompanion } from './Companion'
 import { signalCompanion } from './Companion'
 import RoleType from './RoleType'
+import HireMe from './HireMe'
 
 // Existing 440 x 276 world coordinates stay independent of responsive display size.
 export const mazeLayout = {
@@ -56,7 +57,7 @@ export function Hero() {
         <RoleType/>
         <p className="hero-copy">I build web apps, work with APIs, and spend a little too long figuring out why my C++ code fails.</p>
         <ClickSpark sparkColor="#b4e0bc" sparkCount={4} sparkSize={4} sparkRadius={12} duration={220}>
-          <div className="hero-buttons"><a className="arcade-button primary-action" href="#contact">Hire Me</a><a className="arcade-button secondary-action" href="/Saheem_Nakhwa_Resume.pdf" target="_blank" rel="noreferrer">Resume <svg aria-hidden="true" viewBox="0 0 16 16" width="15" height="15"><path d="M4 1h6l3 3v11H3V1h1m5 0v4h4M5 8h5M5 11h5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg></a></div>
+          <div className="hero-buttons"><HireMe/><a className="arcade-button secondary-action" href="/Saheem_Nakhwa_Resume.pdf" target="_blank" rel="noreferrer">Resume <svg aria-hidden="true" viewBox="0 0 16 16" width="15" height="15"><path d="M4 1h6l3 3v11H3V1h1m5 0v4h4M5 8h5M5 11h5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg></a></div>
         </ClickSpark>
         <div className="hero-socials">{profile.links.map(link => <a key={link.name} href={link.url} target="_blank" rel="noreferrer">{link.name}</a>)}</div>
       </div>
