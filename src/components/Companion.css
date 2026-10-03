@@ -1,0 +1,17 @@
+header.arcade-nav .automatic-companion{position:relative;display:flex;align-items:center;gap:13px}
+.companion-speech{position:relative;flex:0 1 250px;width:250px;min-width:0;padding:8px 12px;border:1px solid #768473;background:#e8dfc8;color:#242c2b;box-shadow:3px 3px #05090e}
+.companion-speech:after{content:'';position:absolute;right:-5px;top:calc(50% - 5px);width:8px;height:8px;background:#e8dfc8;border-top:1px solid #768473;border-right:1px solid #768473;transform:rotate(45deg)}
+
+.companion-speech p{font:14px/1.5 var(--mono);margin:0;overflow-wrap:anywhere;min-height:42px}
+@media(max-width:1200px){.avatar-caption{font-size:6px}.avatar-effect{font-size:12px}}
+@media(max-width:600px){
+ header.arcade-nav .nav-shell{padding-inline:12px;gap:10px;min-height:86px}
+ header.arcade-nav .menu-button{font-size:0;padding:10px;gap:0}
+ header.arcade-nav .menu-button>span{font:18px/1 var(--mono)}
+ header.arcade-nav .nav-end{min-width:0;flex-shrink:1}
+ header.arcade-nav .automatic-companion{gap:8px;min-width:0}
+ .companion-speech{width:clamp(140px,42vw,250px);padding:7px 9px;flex-shrink:1}
+ .companion-speech p{font-size:12px;line-height:1.5;min-height:54px}
+ 
+ header.arcade-nav .companion-portrait{width:56px;height:56px}
+}

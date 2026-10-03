@@ -44,7 +44,7 @@ export function Hero() {
     y.set(((event.clientY - rect.top) / rect.height - .5) * 6)
   }
   function resetDepth() { x.set(0); y.set(0) }
-  return <section ref={scene} className="hero-scene" aria-labelledby="hero-title" onPointerMove={move} onPointerLeave={resetDepth} data-depth-enabled={!reduced && finePointer}>
+  return <section id="hero" ref={scene} className="hero-scene" aria-labelledby="hero-title" onPointerMove={move} onPointerLeave={resetDepth} data-depth-enabled={!reduced && finePointer}>
     <div className="scene-art" aria-hidden="true">
       <motion.div className="city-layer" style={{ x: reduced ? 0 : smoothX, y: reduced ? 0 : smoothY }} />
       <div className="scene-shade" />
@@ -83,9 +83,10 @@ function Maze() {
   <path d={mazeLayout.walls} fill="none" stroke="#bdd4b6" strokeWidth="2" strokeLinejoin="miter"/>
   <g fill="#748181">{[[45,42],[100,40],[147,41],[199,88],[299,43],[347,91],[399,137],[346,235],[246,236],[149,189],[45,184],[98,137],[200,187],[350,137]].map(([px,py])=><rect key={`${px}-${py}`} x={px} y={py} width="3" height="3"/>)}</g>
   <g fill="#e2c991" fontFamily="Silkscreen,monospace" fontSize="14">{mazeLayout.sleep.map(([px,py])=><text key={`${px}-${py}`} x={px} y={py} textAnchor="middle">Zzz</text>)}</g>
-  <svg x={mazeLayout.player.x-13} y={mazeLayout.player.y-14} width="27" height="28" viewBox="0 0 160 160"><Character animate={false}/></svg>
+  <foreignObject x={mazeLayout.player.x-18} y={mazeLayout.player.y-18} width="36" height="36"><Character/></foreignObject>
   <g transform={`translate(${mazeLayout.college.x-12} ${mazeLayout.college.y-12})`}><PixelIcon kind="college"/></g>
   <g transform={`translate(${mazeLayout.procrastination.x-12} ${mazeLayout.procrastination.y-12})`}><PixelIcon kind="ghost"/></g>
  </svg>
 }
+
 

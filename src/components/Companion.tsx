@@ -1,20 +1,29 @@
-import { useEffect, useRef, useState } from 'react'
-import { useReducedMotion } from 'motion/react'
-import Character, { type CharacterState } from './Character'
-export type CompanionEvent='idle'|'terminal-open'|'terminal-close'|'game-preview'|'game-win'|'project-instagram'|'project-urban'|'farewell'|CharacterState
-export function signalCompanion(event:CompanionEvent){window.dispatchEvent(new CustomEvent('portfolio:companion',{detail:event}))}
-const reactions:Record<string,[CharacterState,string]>={idle:['neutral','One more commit.'],'terminal-open':['curious','Try typing help.'],'terminal-close':['smiling','Back to exploring.'],'game-preview':['sleepy','Sleep is the real prize.'],'game-win':['celebrating','A well-earned rest!'],'project-instagram':['talking','Real-time chats, built with Socket.IO.'],'project-urban':['talking','A civic project for Ratnagiri.'],farewell:['smiling','See you on the next quest.'],neutral:['neutral','One more commit.'],smiling:['smiling','That worked!'],talking:['talking','Let’s talk code.'],sleepy:['sleepy','Just five more minutes.'],annoyed:['annoyed','Another missing semicolon?'],curious:['curious','What are we exploring?'],celebrating:['celebrating','It finally works!'],gear5:['gear5','A little more imagination.'],'67':['67','Six… seven.']}
-export function Companion(){const reduced=useReducedMotion(),[state,setState]=useState<CharacterState>('neutral'),[message,setMessage]=useState('One more commit.'),[count,setCount]=useState(16),[menu,setMenu]=useState(false),[paused,setPaused]=useState(false),[serial,setSerial]=useState(0)
- const root=useRef<HTMLDivElement>(null),button=useRef<HTMLButtonElement>(null),reset=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),lastAuto=useRef(0),busyUntil=useRef(0),seen=useRef(new Set<string>())
- function react(event:string,direct=true){const reaction=reactions[event];if(!reaction)return;if(!direct){if(Date.now()<busyUntil.current||seen.current.has(event)||Date.now()-lastAuto.current<12000)return;seen.current.add(event);lastAuto.current=Date.now()}busyUntil.current=Date.now()+5200;clearTimeout(reset.current);setState(reaction[0]);setMessage(reaction[1]);setCount(0);setSerial(s=>s+1);if(event!=='idle'&&event!=='neutral')reset.current=setTimeout(()=>{setState('neutral');setMessage('');},5200)}
- useEffect(()=>{const respond=(e:Event)=>{const event=(e as CustomEvent<string>).detail;react(event,!['farewell','smiling','game-preview'].includes(event))};window.addEventListener('portfolio:companion',respond);return()=>{window.removeEventListener('portfolio:companion',respond);clearTimeout(reset.current)}},[])
- useEffect(()=>{if(paused||reduced||count>=message.length)return;const timer=setInterval(()=>{if(!document.hidden)setCount(n=>Math.min(n+1,message.length))},42);return()=>clearInterval(timer)},[message,count,paused,reduced])
- useEffect(()=>{if(!menu)return;const dismiss=(e:PointerEvent)=>{if(!root.current?.contains(e.target as Node))setMenu(false)};document.addEventListener('pointerdown',dismiss);return()=>document.removeEventListener('pointerdown',dismiss)},[menu])
- const speaking=state==='talking'&&count<message.length&&!paused&&!reduced
- return <div ref={root} className="face-companion" data-companion-state={state} onKeyDown={e=>{if(e.key==='Escape'){setMenu(false);button.current?.focus()}}}>
- {message&&<div className="face-dialogue"><span aria-label={message}><span aria-hidden="true">{reduced||paused?message:message.slice(0,count)}</span></span><button aria-label="Dismiss companion message" onClick={()=>setMessage('')}>×</button></div>}
- <button ref={button} className="companion-trigger" aria-label="Character controls" aria-expanded={menu} aria-controls="character-controls" onClick={()=>setMenu(v=>!v)}><Character key={serial} state={state==='talking'&&!speaking?'smiling':state} animate={!paused}/></button>
- {menu&&<div id="character-controls" className="character-controls" role="group" aria-label="Character expressions">{[['Idle','idle'],['Smile','smiling'],['Talking','talking'],['Sleepy','sleepy'],['Celebration','celebrating'],['Gear 5','gear5'],['67','67']].map(([label,event])=><button key={event} onClick={()=>react(event)}>{label}</button>)}<button aria-pressed={paused} onClick={()=>setPaused(v=>!v)}>{paused?'Resume animation':'Pause animation'}</button></div>}
+import { useEffect, useState } from 'react'
+import Character from './Character'
+import { CompanionDirector, type AvatarMode } from './companionDirector'
+import './Companion.css'
+export type CompanionEvent = AvatarMode | 'terminal-open' | 'terminal-close' | 'game-preview' | 'game-win' | 'game-loss' | 'sleep-collected' | 'project-instagram' | 'project-urban' | 'farewell' | 'gear6' | `section-${string}`
+export function signalCompanion(event: CompanionEvent) { window.dispatchEvent(new CustomEvent('portfolio:companion', { detail: event })) }
+const actions: {mode:AvatarMode; label:string}[] = [{mode:'idle',label:'Look around'},{mode:'gear5',label:'Gear 5'},{mode:'67',label:'Six seven'},{mode:'dance',label:'Victory dance'},{mode:'thinking',label:'Think'},{mode:'sleepy',label:'Power nap'},{mode:'celebrate',label:'Level up'}]
+const eventModes: Record<string, AvatarMode> = {'terminal-open':'thinking','terminal-close':'celebrate','game-preview':'thinking','game-win':'celebrate','game-loss':'sleepy','sleep-collected':'sleepy','project-instagram':'celebrate','project-urban':'thinking'}
+export function Companion() {
+ const [director] = useState(() => new CompanionDirector())
+ const [frame,setFrame] = useState({mode:director.mode,message:director.message})
+ useEffect(() => {
+  const update = () => setFrame(previous => previous.mode===director.mode && previous.message===director.message ? previous : {mode:director.mode,message:director.message})
+  const respond = (event: Event) => {
+   const key = (event as CustomEvent<CompanionEvent>).detail
+   if (key.startsWith('section-')) director.setSection(key.slice(8))
+   else if (actions.some(action=>action.mode===key)) director.trigger(key as AvatarMode)
+   else if(eventModes[key]) director.trigger(eventModes[key])
+   update()
+  }
+  window.addEventListener('portfolio:companion', respond)
+  const timer=setInterval(()=>{if(!document.hidden){director.advance(100);update()}},100)
+  return()=>{clearInterval(timer);window.removeEventListener('portfolio:companion',respond)}
+ },[director])
+ return <div className="face-companion automatic-companion" data-companion-state={frame.mode}>
+  <div className="companion-speech"><p>{frame.message}</p></div>
+  <div className="companion-portrait"><Character state={frame.mode}/></div>
  </div>
 }
-

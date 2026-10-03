@@ -281,3 +281,30 @@ Reduced-motion renders the stable Full-Stack Developer role and disables decorat
 - Only the actual Urban Tracker login screenshot exists in available assets. No dashboard/complaint/facilities screenshots or multiple-image gallery could be added honestly. Login remains the lead image; add a real dashboard capture when supplied.
 - Instagram Clone still has an explicitly labeled concept illustration, not a fabricated screenshot.
 - No deployment performed.
+
+## October 3, 2026: minimal retro refinement (current status)
+This supersedes the old timeline, project-preview and manual character-menu records. See docs/RETRO_REFINEMENT.md for implementation, official Folder source, checks and limitations.
+- [x] Redundant numbered labels removed; semantic sections, primary headings and anchors retained.
+- [x] Compact About and integrated interactive interests; existing concise verified introduction preserved.
+- [x] Winding experience route with location illustrations, dates visible, overlap note, one shared detail area, selected marker, first-entry path reveal, keyboard controls and mobile vertical layout.
+- [x] Official React Bits Folder adapted for project papers, hover/focus opening and existing accessible case-study dialogs. Essential information and real links remain outside the folder.
+- [x] Automatic companion priority queue replaces manual public animation selection. Completion before next reaction, idle variation timing, rare specials, dialogue cooldown, session greetings and reading/typing guard implemented.
+- [x] Larger shared original SVG face; actual eye/lid/brow/mouth animations, Gear 5 hair/clouds, alternating 67 hands. Pause retains animation phase; reduced-motion/hidden-tab/off-screen guards and cleanup retained.
+- [x] Active navbar pixel indicator, short consistent reveals, detail/dialog transitions and existing restrained skyline depth/typewriter preserved.
+- [x] Production build and deterministic scheduler checks passed. Lint has seven non-blocking existing-pattern warnings, no errors. Browser desktop/mobile/narrow checks passed; no console errors. Dialog focus/Escape/restoration, filters, copy email, interests, terminal and actual facial changes checked.
+- [x] Full-page screenshots saved: docs/refined-desktop.jpg and docs/refined-mobile.jpg; focus-open folder screenshot: docs/refined-folders.jpg.
+- [x] No deployment.
+
+Remaining limitations: Sleep Quest is still the pre-existing static SVG preview. No gameplay was implemented. Actual Instagram screenshots, Urban Tracker dashboard/complaint/facilities captures and certificate images were unavailable. No fake assets added. Motion/hidden-tab guards were source-reviewed, but OS reduced-motion/visibility emulation and recording were unavailable; physical touch hardware was not tested. The current character is an animated layered illustration, with no missing external expression frames.
+
+## Latest user direction: centered About, classic experience, arcade projects, supplied face
+This supersedes the October 3 map/folder/vector-face design. See docs/ARCADE_REVISION.md.
+- [x] Removed all four interests from the visible About section.
+- [x] Centered verified About copy in readable pixel type with restrained keyword highlights.
+- [x] Restored conventional experience entries and accessible expandable responsibilities; removed route map.
+- [x] Replaced folders with custom arcade project screens and short React Bits-inspired pixel transitions. Actual assets, accessible dialogs and external links retained.
+- [x] New transparent expression atlas generated from latest supplied face, shared across navbar/maze/farewell. Actual blink/talking frames, sleep, annoyance, celebration, curious, powered-up and alternating 67 gesture. Added gear6 terminal command while preserving gear5.
+- [x] Existing controller priority, cooldowns, pause, session deduplication and reduced-motion/visibility guards retained. Hero, skyline, terminal, skills, heatmap, contact and resume preserved.
+- [x] Production build and scheduler checks passed. No deployment.
+Remaining: static game; no genuine Instagram screenshot or extra Urban Tracker application captures. Recording/motion preference emulation unavailable.
+- [x] Final desktop/mobile/narrow checks: no overflow or console errors; experience expansion, dialogs/Escape, copy email, Gear 6 frame 8, 67 frame 9 and alternating hands, keyboard pause/resume verified. Screenshots: docs/arcade-desktop.jpg and docs/arcade-mobile.jpg.
