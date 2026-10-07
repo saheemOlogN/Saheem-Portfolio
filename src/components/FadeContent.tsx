@@ -1,7 +1,8 @@
+import { useReducedMotion } from './MotionPreference'
 // Adapted from React Bits FadeContent (ReactBits-LICENSE.md).
 // Retains its one-time opacity reveal using the project's existing Motion runtime.
 import { useRef, type ReactNode } from 'react'
-import { motion, useInView, useReducedMotion } from 'motion/react'
+import { motion, useInView } from 'motion/react'
 export default function FadeContent({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null),
     reduced = useReducedMotion()

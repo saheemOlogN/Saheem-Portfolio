@@ -1,3 +1,4 @@
+import { useReducedMotion } from './MotionPreference'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import {
   experience,
@@ -11,6 +12,7 @@ import {
 } from '../data'
 import FadeContent from './FadeContent'
 import Character from './Character'
+import HireMe from './HireMe'
 import Activity from './Activity'
 import TargetCursor from './TargetCursor'
 import './Portfolio.css'
@@ -95,10 +97,12 @@ function About() {
         <Heading line="Behind the keyboard." />
         <div className="about-pixel-copy">
           <p>
-            I'm <strong>Saheem</strong>, a <strong>full-stack developer</strong>{' '}
-            working across <em>React interfaces</em>, <em>REST APIs</em>, and{' '}
+            I'm <strong>Saheem Nakhwa</strong>, a{' '}
+            <strong>full-stack developer</strong> working across{' '}
+            <em>React interfaces</em>, <em>REST APIs</em>, and{' '}
             <em>databases</em>. My experience spans freelance projects, business
-            applications, and backend testing.
+            applications, and backend testing. I build MERN applications with
+            React, Node.js, Express, and MongoDB, alongside PHP and MySQL.
           </p>
           <p>
             I'm studying <strong>Computer Science and Engineering</strong> with
@@ -115,7 +119,7 @@ function Experience() {
   const [selected, setSelected] = useState<number | null>(0)
   return (
     <Chapter id="experience">
-      <Heading line="A few chapters of building." />
+      <Heading line="Checkpoints" />
       <div className="career-timeline">
         {experience.map((job, i) => (
           <article
@@ -182,14 +186,15 @@ function Projects() {
     if (!card) return
     node.scrollBy({
       left: direction * (card.offsetWidth + 22),
-      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
-        ? 'instant'
-        : 'smooth',
+      behavior:
+        document.documentElement.dataset.motion === 'paused'
+          ? 'instant'
+          : 'smooth',
     })
   }
   return (
     <Chapter id="projects">
-      <Heading line="Ideas, made tangible." />
+      <Heading line="Where did my time Go?" />
       <div
         className="project-carousel"
         role="region"
@@ -334,16 +339,21 @@ function Skills() {
   )
 }
 function Achievements() {
+  const reduced = useReducedMotion()
+  const [expandedEducation, setExpandedEducation] = useState<number | null>(0)
+
   return (
     <Chapter id="achievements">
-      <TargetCursor
-        spinDuration={2}
-        hideDefaultCursor
-        parallaxOn
-        hoverDuration={0.2}
-        cursorColor="#ffffff"
-        cursorColorOnTarget="#B497CF"
-      />
+      {!reduced && (
+        <TargetCursor
+          spinDuration={2}
+          hideDefaultCursor
+          parallaxOn
+          hoverDuration={0.2}
+          cursorColor="#ffffff"
+          cursorColorOnTarget="#B497CF"
+        />
+      )}
       <div id="side-quests-cursor">
         <Heading line="Side Quests" />
         <div className="trophy-shelf">
@@ -357,16 +367,45 @@ function Achievements() {
           ))}
         </div>
       </div>
-      <div className="education-strip">
-        <h3>Education</h3>
-        {education.map((item) => (
-          <article key={item.school}>
-            <p className="small-label">{item.date}</p>
-            <h4>{item.school}</h4>
-            <p>{item.degree}</p>
-            <strong>{item.result}</strong>
-          </article>
-        ))}
+      <div className="education-timeline">
+        <h3 className="education-heading">Education</h3>
+        <div className="career-timeline">
+          {education.map((item, i) => (
+            <article
+              className={`career-entry ${expandedEducation === i ? 'selected' : ''}`}
+              key={item.school}
+            >
+              <div className="career-date">
+                <span className="timeline-dot" />
+                {item.date || 'SSC'}
+              </div>
+              <div className="career-body">
+                <h3>{item.school}</h3>
+                <p className="education-degree">{item.degree}</p>
+                <button
+                  className="responsibility-toggle"
+                  aria-expanded={expandedEducation === i}
+                  aria-controls={`education-detail-${i}`}
+                  onClick={() =>
+                    setExpandedEducation(expandedEducation === i ? null : i)
+                  }
+                >
+                  {expandedEducation === i ? 'Hide result' : 'View result'}
+                  <span aria-hidden="true">
+                    {expandedEducation === i ? '−' : '+'}
+                  </span>
+                </button>
+                <p
+                  className="education-result"
+                  id={`education-detail-${i}`}
+                  hidden={expandedEducation !== i}
+                >
+                  {item.result}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </Chapter>
   )
@@ -383,53 +422,46 @@ function Contact() {
   }
   return (
     <Chapter id="contact">
-      <Heading line="Let’s build the next thing." />
-      <div className="closing">
-        <div>
-          <p>
-            Have an application in mind, a team to join,
-            <br className="desktop-br" /> or a problem worth solving? Let's
-            talk.
-          </p>
-          <a className="closing-email" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
-          <div className="closing-actions">
-            <button className="small-button" onClick={copy}>
-              Copy email
-            </button>
-            <a
-              className="text-link"
-              href="/Saheem_Nakhwa_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              View resume
-            </a>
-            <a className="text-link" href="/Saheem_Nakhwa_Resume.pdf" download>
-              Download PDF
-            </a>
-          </div>
-          <p className="copy-status" role="status">
-            {copied}
-          </p>
-          <div className="closing-socials">
-            {profile.links.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="farewell-character">
-          <span>See you on the next quest.</span>
+      <div className="contact-invitation">
+        <div className="contact-avatar" aria-hidden="true">
           <Character />
-          <div className="character-platform" />
+        </div>
+        <h2>
+          Got an idea?
+          <br />
+          <span>I'm in.</span>
+        </h2>
+        <p className="contact-note">
+          A web app, an internship, or your next team member.
+          <br />
+          Tell me what you're working on.
+        </p>
+        <div className="contact-primary-actions">
+          <HireMe />
+          <a
+            className="contact-resume"
+            href="/Saheem_Nakhwa_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View my resume ↗
+          </a>
+        </div>
+        <div className="contact-email-row">
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          <button type="button" onClick={copy} aria-label="Copy email address">
+            Copy
+          </button>
+        </div>
+        <p className="contact-copy-status" role="status">
+          {copied}
+        </p>
+        <div className="contact-profile-links">
+          {profile.links.map((link) => (
+            <a key={link.name} href={link.url} target="_blank" rel="noreferrer">
+              {link.name} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
         </div>
       </div>
     </Chapter>

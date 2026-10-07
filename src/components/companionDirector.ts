@@ -45,7 +45,10 @@ export const dialogue: Record<AvatarMode, string[]> = {
 }
 export class CompanionDirector {
   mode: AvatarMode = 'idle'
-  message = dialogue.idle[0]
+  message = ''
+  private home = true
+  private clock = 0
+  private lastHomeDialogue = -30000
   private skills = false
   private elapsed = 0
   private dialogueElapsed = 0
@@ -63,6 +66,11 @@ export class CompanionDirector {
     return 12000 + this.random() * 12000
   }
   private speak() {
+    if (this.home && this.clock - this.lastHomeDialogue < 30000) {
+      this.message = ''
+      return
+    }
+    if (this.home) this.lastHomeDialogue = this.clock
     const index =
       ((this.lineIndex[this.mode] ?? -1) + 1) % dialogue[this.mode].length
     this.lineIndex[this.mode] = index
@@ -74,6 +82,8 @@ export class CompanionDirector {
     this.speak()
   }
   setSection(section: string) {
+    this.home = section === 'hero'
+    if (this.home) this.message = ''
     this.skills = section === 'skills'
     if (this.mode === '67' && this.specialRemaining > 0) return
     this.specialRemaining = 0
@@ -88,7 +98,9 @@ export class CompanionDirector {
     if (mode === '67') this.sixSevenRemaining = 24000 + this.random() * 10000
   }
   advance(milliseconds: number) {
+    this.clock += milliseconds
     this.dialogueElapsed += milliseconds
+    if (this.home && this.dialogueElapsed >= 6000) this.message = ''
     this.sixSevenRemaining -= milliseconds
     if (this.sixSevenRemaining <= 0 && this.mode !== '67') {
       this.trigger('67')
@@ -121,7 +133,7 @@ export class CompanionDirector {
         this.trigger(next)
       }
     }
-    if (this.dialogueElapsed >= 8500) this.speak()
+    if (this.dialogueElapsed >= (this.home ? 30000 : 8500)) this.speak()
     return this.mode
   }
 }

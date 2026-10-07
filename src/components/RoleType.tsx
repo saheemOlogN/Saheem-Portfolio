@@ -1,5 +1,6 @@
+import { useReducedMotion } from './MotionPreference'
 import { useEffect, useState } from 'react'
-import { useReducedMotion } from 'motion/react'
+
 const phrases = [
   'Full-Stack Developer.',
   'Professional Shawarma Critic.',

@@ -1,7 +1,8 @@
+import { useReducedMotion } from './MotionPreference'
 // Adapted from React Bits ClickSpark. License: ReactBits-LICENSE.md.
 // Uses the original radial spark geometry; frames run only during a click burst.
 import { useEffect, useRef, type ReactNode, type MouseEvent } from 'react'
-import { useReducedMotion } from 'motion/react'
+
 export default function ClickSpark({
   children,
   sparkColor = '#fff',

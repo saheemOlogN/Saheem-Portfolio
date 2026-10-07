@@ -74,3 +74,59 @@ p {
     transition: none !important;
   }
 }
+:root {
+  --body-font: 'Space Grotesk', sans-serif;
+  --section-space: clamp(56px, 7vw, 96px);
+  --heading-space: clamp(28px, 4vw, 40px);
+}
+html[data-motion='paused'] {
+  scroll-behavior: auto;
+}
+html[data-motion='paused'] *,
+html[data-motion='paused'] *::before,
+html[data-motion='paused'] *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+.portfolio-world .chapter {
+  padding-block: var(--section-space);
+}
+.portfolio-world .chapter-heading,
+.portfolio-world #about .chapter-heading {
+  margin-bottom: var(--heading-space);
+}
+.portfolio-world h2,
+.portfolio-world h3,
+.portfolio-world h4 {
+  font-family: var(--pixel);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+.portfolio-world .chapter-heading h2,
+.portfolio-world #about .chapter-heading h2 {
+  font-size: clamp(24px, 2.6vw, 34px);
+}
+.portfolio-world p,
+.portfolio-world li,
+.portfolio-world .career-date,
+.portfolio-world .career-company,
+.portfolio-world .education-result,
+.hero-copy {
+  font-family: var(--body-font);
+  line-height: 1.75;
+}
+.portfolio-world .about-pixel-copy,
+.portfolio-world .about-prose > p,
+.portfolio-world .career-body li,
+.portfolio-world .project-card p,
+.portfolio-world .closing > div > p,
+.portfolio-world .education-degree {
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.75;
+}
+.portfolio-world .project-card h3,
+.portfolio-world .career-body h3,
+.portfolio-world .trophy-shelf h3 {
+  font-size: clamp(17px, 1.7vw, 21px);
+}

@@ -1801,3 +1801,170 @@ footer.wrap {
     font-size: 12px;
   }
 }
+.education-strip {
+  display: block;
+}
+.education-strip > h3 {
+  margin-bottom: 28px;
+}
+.education-strip article {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 45px;
+  padding: 28px 24px 28px 12px;
+  border-left: 0;
+  border-bottom: 1px solid #283344;
+}
+.education-strip article:first-of-type {
+  border-top: 1px solid #334052;
+}
+.education-date {
+  position: relative;
+  padding: 5px 0 0 30px;
+  color: #d5c79f;
+  font: 15px/1.6 var(--mono);
+}
+.education-date > span {
+  position: absolute;
+  left: 3px;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid #81958d;
+  background: #b5d9ac;
+}
+.education-strip h4 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+.education-details p {
+  font-size: 18px;
+  color: #b9c4d2;
+}
+@media (max-width: 760px) {
+  .education-strip article {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 16px;
+  }
+  .education-details {
+    padding-left: 30px;
+  }
+  .education-strip h4 {
+    font-size: 20px;
+  }
+}
+.education-timeline {
+  margin-top: 48px;
+}
+.education-heading {
+  margin-bottom: 28px;
+  text-align: center;
+  font: 24px/1.5 var(--pixel);
+  color: #b1c6cb;
+}
+.education-degree {
+  font-size: 18px;
+  color: #b9c4d2;
+  margin-bottom: 12px;
+}
+.education-result {
+  font-size: 17px;
+  color: #c3b4d8;
+  margin-top: 14px;
+}
+.closing .farewell-character .character-face {
+  width: clamp(190px, 20vw, 260px);
+  height: clamp(190px, 20vw, 260px);
+}
+#contact .contact-invitation {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+#contact .contact-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+#contact .contact-avatar .character-face {
+  width: clamp(150px, 18vw, 200px);
+  height: clamp(150px, 18vw, 200px);
+}
+#contact .contact-invitation h2 {
+  margin: 0;
+  font: clamp(28px, 4vw, 46px) / 1.45 var(--pixel);
+  color: #eee6d4;
+  letter-spacing: -0.04em;
+  border: 0;
+}
+#contact .contact-invitation h2 span {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 0 14px 4px;
+  color: #b9d4a8;
+  background: #b9d4a812;
+}
+#contact .contact-note {
+  margin: 24px auto 0;
+  font:
+    clamp(17px, 1.5vw, 19px) / 1.75 'Space Grotesk',
+    sans-serif;
+  color: #b9c3ce;
+  text-wrap: pretty;
+}
+#contact .contact-primary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  margin-top: 30px;
+}
+#contact .contact-resume {
+  padding: 12px 0;
+  font:
+    16px/1.5 'Space Grotesk',
+    sans-serif;
+}
+#contact .contact-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 32px;
+  font-size: clamp(15px, 2vw, 18px);
+}
+#contact .contact-email-row a {
+  overflow-wrap: anywhere;
+  color: #c1d5b8;
+}
+#contact .contact-email-row button {
+  min-height: 44px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid #394654;
+  color: #bdc7d2;
+  font-size: 14px;
+}
+#contact .contact-copy-status {
+  min-height: 24px;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #b9d4a8;
+}
+#contact .contact-profile-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: 16px;
+  font:
+    15px/1.5 'Space Grotesk',
+    sans-serif;
+  color: #a6b1c0;
+}
+#contact .contact-profile-links a {
+  padding-block: 12px;
+}

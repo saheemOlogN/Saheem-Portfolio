@@ -1,12 +1,21 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { MotionPreference } from './components/MotionPreference'
 import { TerminalDemo } from './components/TerminalDemo'
 import './App.css'
 import { Hero, Companion, signalCompanion } from './components/Hero'
 import Portfolio from './components/Portfolio'
 import useActiveSection from './components/useActiveSection'
 import './components/ArcadeNav.css'
-const nav = ['About', 'Experience', 'Projects', 'Activity', 'Contact']
+const nav = ['Home', 'About', 'Experience', 'Projects', 'Activity', 'Contact']
 export default function App() {
+  return (
+    <MotionPreference>
+      <PortfolioApp />
+    </MotionPreference>
+  )
+}
+function PortfolioApp() {
+  const menuButton = useRef<HTMLButtonElement>(null)
   const activeSection = useActiveSection(),
     navSection = ['skills', 'achievements'].includes(activeSection)
       ? 'projects'
@@ -15,6 +24,52 @@ export default function App() {
     opener = useRef<HTMLButtonElement>(null)
   const [menu, setMenu] = useState(false),
     [terminalOpen, setTerminalOpen] = useState(false)
+  useEffect(() => {
+    if (!menu) return
+    const panel = document.getElementById('main-nav')!
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const background = document.querySelectorAll<HTMLElement>(
+      'main, footer, .nav-end',
+    )
+    background.forEach((element) => {
+      element.inert = true
+    })
+    panel.querySelector<HTMLElement>('button, a')?.focus()
+    function keyboard(event: KeyboardEvent) {
+      if (event.key === 'Escape') setMenu(false)
+      if (event.key !== 'Tab') return
+      const nodes = Array.from(
+        panel.querySelectorAll<HTMLElement>('a, button:not(:disabled)'),
+      )
+      const first = nodes[0],
+        last = nodes[nodes.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+    const breakpoint = matchMedia('(max-width: 1200px)')
+    const resize = () => {
+      if (!breakpoint.matches) setMenu(false)
+    }
+    document.addEventListener('keydown', keyboard)
+    breakpoint.addEventListener('change', resize)
+    return () => {
+      document.body.style.overflow = dialog.current?.open
+        ? 'hidden'
+        : previousOverflow
+      background.forEach((element) => {
+        element.inert = false
+      })
+      document.removeEventListener('keydown', keyboard)
+      breakpoint.removeEventListener('change', resize)
+      if (!dialog.current?.open) menuButton.current?.focus()
+    }
+  }, [menu])
   function close() {
     setTerminalOpen(false)
     signalCompanion('terminal-close')
@@ -35,10 +90,19 @@ export default function App() {
         Skip to content
       </a>
       <header className="arcade-nav">
+        {menu && (
+          <button
+            className="nav-backdrop"
+            aria-label="Close navigation"
+            tabIndex={-1}
+            onClick={() => setMenu(false)}
+          />
+        )}
         <div className="nav-shell">
           <div className="arcade-nav-left">
             <button
               className="menu-button"
+              ref={menuButton}
               aria-expanded={menu}
               aria-controls="main-nav"
               onClick={() => setMenu(!menu)}
@@ -49,6 +113,8 @@ export default function App() {
             <nav
               id="main-nav"
               aria-label="Main navigation"
+              role={menu ? 'dialog' : undefined}
+              aria-modal={menu ? true : undefined}
               className={menu ? 'expanded' : ''}
               onKeyDown={(e) => {
                 if (e.key === 'Escape') {
@@ -59,12 +125,17 @@ export default function App() {
                 }
               }}
             >
+              <button className="sidebar-close" onClick={() => setMenu(false)}>
+                Close menu ×
+              </button>
               {nav.map((n) => (
                 <a
                   key={n}
-                  href={`#${n.toLowerCase()}`}
+                  href={`#${n === 'Home' ? 'hero' : n.toLowerCase()}`}
                   aria-current={
-                    navSection === n.toLowerCase() ? 'location' : undefined
+                    navSection === (n === 'Home' ? 'hero' : n.toLowerCase())
+                      ? 'location'
+                      : undefined
                   }
                   onClick={() => setMenu(false)}
                 >
@@ -95,8 +166,6 @@ export default function App() {
       </main>
       <footer className="wrap">
         <span>© {new Date().getFullYear()} Saheem Nakhwa</span>
-        <span>BUILT WITH INTENT. A LITTLE BIT OF ARCADE.</span>
-        <a href="#main">Back to top ↑</a>
       </footer>
       <dialog
         className="terminal-dialog"

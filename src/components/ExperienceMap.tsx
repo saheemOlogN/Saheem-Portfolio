@@ -1,5 +1,6 @@
+import { useReducedMotion } from './MotionPreference'
 import { useRef, useState, type KeyboardEvent } from 'react'
-import { motion, useInView, useReducedMotion } from 'motion/react'
+import { motion, useInView } from 'motion/react'
 import { experience } from '../data'
 import './ExperienceMap.css'
 

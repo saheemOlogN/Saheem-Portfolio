@@ -1,11 +1,6 @@
+import { useReducedMotion } from './MotionPreference'
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from 'motion/react'
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import DecryptedText from './DecryptedText'
 import ClickSpark from './ClickSpark'
 import { profile } from '../data'
@@ -160,7 +155,7 @@ export function Hero() {
         <SleepQuest />
       </div>
       <a className="hero-explore" href="#about">
-        A little more about me <span aria-hidden="true">↓</span>
+        My lore <span aria-hidden="true">↓</span>
       </a>
     </section>
   )

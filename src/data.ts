@@ -149,6 +149,12 @@ export const education = [
     degree: 'Diploma in Computer Engineering',
     result: 'Aggregate: 87.94%',
   },
+  {
+    school: 'Mukul Madhav Vidyalaya',
+    date: '',
+    degree: 'Secondary School Certificate (SSC)',
+    result: 'SSC Percentage: 90.60%',
+  },
 ] as const
 export const achievements = [
   '1st Rank in State-Level Diploma Project Competition',

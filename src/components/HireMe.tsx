@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { profile } from '../data'
 import './HireMe.css'
 
 export default function HireMe() {
+  const titleId = useId()
   const dialog = useRef<HTMLDialogElement>(null)
   const opener = useRef<HTMLButtonElement>(null)
   const [open, setOpen] = useState(false)
@@ -80,7 +81,7 @@ export default function HireMe() {
         <dialog
           ref={dialog}
           className="hire-dialog"
-          aria-labelledby="hire-title"
+          aria-labelledby={titleId}
           onCancel={(event) => {
             event.preventDefault()
             close()
@@ -102,7 +103,7 @@ export default function HireMe() {
           }}
         >
           <div className="hire-heading">
-            <h2 id="hire-title">Let's work together.</h2>
+            <h2 id={titleId}>Let's work together.</h2>
             <button
               type="button"
               onClick={close}

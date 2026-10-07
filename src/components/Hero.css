@@ -859,6 +859,7 @@ header .nav-shell nav a[aria-current='location']:after {
 }
 /* Hero copy should be comfortable to read without losing the title hierarchy. */
 .hero-copy {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(19px, 1.65vw, 22px);
   max-width: 490px;
   line-height: 1.7;

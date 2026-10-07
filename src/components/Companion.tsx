@@ -1,3 +1,4 @@
+import { useReducedMotion } from './MotionPreference'
 import { useEffect, useState } from 'react'
 import Character from './Character'
 import { CompanionDirector, type AvatarMode } from './companionDirector'
@@ -40,12 +41,14 @@ const eventModes: Record<string, AvatarMode> = {
   'project-urban': 'thinking',
 }
 export function Companion() {
+  const reduced = useReducedMotion()
   const [director] = useState(() => new CompanionDirector())
   const [frame, setFrame] = useState({
     mode: director.mode,
     message: director.message,
   })
   useEffect(() => {
+    if (reduced) return
     const update = () =>
       setFrame((previous) =>
         previous.mode === director.mode && previous.message === director.message
@@ -71,13 +74,17 @@ export function Companion() {
       clearInterval(timer)
       window.removeEventListener('portfolio:companion', respond)
     }
-  }, [director])
+  }, [director, reduced])
   return (
     <div
       className="face-companion automatic-companion"
       data-companion-state={frame.mode}
     >
-      <div className="companion-speech">
+      <div
+        className="companion-speech"
+        aria-hidden={!frame.message}
+        style={{ visibility: frame.message ? 'visible' : 'hidden' }}
+      >
         <p>{frame.message}</p>
       </div>
       <div className="companion-portrait">
