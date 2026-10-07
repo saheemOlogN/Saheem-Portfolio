@@ -2,7 +2,7 @@
 
 Production URL: https://saheem-nakhwa.vercel.app/
 
-The build generates readable initial HTML from src/data.ts through seo.ts. React replaces this fallback with the interactive portfolio. Keep the fallback introduction aligned with the visible About copy when editing it. This is an HTML fallback, not React server-side hydration.
+The build injects structured data through seo.ts. React renders the portfolio into an empty root; no separate HTML portfolio is shown during loading. Metadata remains available in the initial HTML, while indexing the page content requires JavaScript rendering. A noscript message provides contact details when JavaScript is disabled.
 
 Search terms supported by real portfolio content include Saheem Nakhwa, full-stack developer, MERN stack developer, React developer, Node.js developer, REST API development and freelance web development. The requested Saheem Nakwa spelling is included as an alternate name in the Person data. Do not add keyword-stuffed paragraphs or unsupported location/service claims.
 

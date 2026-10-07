@@ -6,16 +6,9 @@ assert.match(
   html,
   /<link rel="canonical" href="https:\/\/saheem-nakhwa.vercel.app\/"/,
 )
-assert.equal((html.match(/<h1[ >]/g) || []).length, 1)
-for (const text of [
-  'Saheem Nakhwa',
-  'Instagram Clone',
-  'Urban Tracker',
-  'EmpowHer',
-  'Mukul Madhav Vidyalaya',
-  'REST APIs',
-])
-  assert.ok(html.includes(text), text)
+assert.match(html, /<div id="root"><\/div>/)
+assert.ok(!html.includes('<h1>Saheem Nakhwa — Full-Stack Developer</h1>'))
+assert.match(html, /<noscript>/)
 const schema = JSON.parse(
   html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1],
 )
@@ -35,5 +28,5 @@ assert.ok(
 for (const match of html.matchAll(/(?:href|src)="(\/[^"#?]+)"/g))
   assert.ok(fs.existsSync('dist' + match[1]), match[1])
 console.log(
-  'SEO checks passed: canonical, structured data, initial HTML content, one main heading, robots, sitemap and local assets.',
+  'SEO checks passed: canonical, structured data, empty React root, no fallback-page flash, robots, sitemap and local assets.',
 )
