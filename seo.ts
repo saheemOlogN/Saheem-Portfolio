@@ -1,4 +1,4 @@
-import { profile } from './src/data.js'
+import { profile, projects, education } from './src/data.js'
 
 const url = 'https://saheem-nakhwa.vercel.app/'
 
@@ -29,7 +29,13 @@ export function portfolioSearchHtml(html: string) {
         name: profile.name,
         alternateName: ['Saheem', 'Saheem Nakwa'],
         url,
-        jobTitle: 'Full-Stack Developer',
+        jobTitle: ['Fullstack Web Developer', 'AI Engineer'],
+        alumniOf: education
+          .slice(1)
+          .map((item) => ({
+            '@type': 'EducationalOrganization',
+            name: item.school,
+          })),
         description:
           'Full-stack developer building React interfaces, REST APIs, and database-backed web applications.',
         sameAs: profile.links.map((item) => item.url),
@@ -44,8 +50,17 @@ export function portfolioSearchHtml(html: string) {
           'MySQL',
           'PHP',
           'C++',
+          'Artificial intelligence',
+          'Machine learning',
         ],
       },
+      ...projects.map((project) => ({
+        '@type': 'CreativeWork',
+        name: project.name,
+        description: project.description,
+        author: { '@id': `${url}#person` },
+        keywords: project.tech.join(', '),
+      })),
     ],
   }
   return html.replace(

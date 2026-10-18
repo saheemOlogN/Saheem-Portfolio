@@ -160,7 +160,7 @@ export const achievements = [
   '1st Rank in State-Level Diploma Project Competition',
   'Winner of State-Level Web Development Competition (2 Times)',
   'Winner of Inter-College Competitive Programming Competition',
-  'Solved 150+ DSA Problems',
+  'Solved 400+ DSA Problems',
   'AI & Machine Learning Course - CodeWithHarry',
 ] as const
 

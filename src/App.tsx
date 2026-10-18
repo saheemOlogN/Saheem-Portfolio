@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { MotionPreference } from './components/MotionPreference'
-import { TerminalDemo } from './components/TerminalDemo'
+const TerminalDemo = lazy(() =>
+  import('./components/TerminalDemo').then((module) => ({
+    default: module.TerminalDemo,
+  })),
+)
 import './App.css'
 import { Hero, Companion, signalCompanion } from './components/Hero'
 import Portfolio from './components/Portfolio'
@@ -209,7 +213,11 @@ function PortfolioApp() {
           }
         }}
       >
-        {terminalOpen && <TerminalDemo onClose={close} />}
+        {terminalOpen && (
+          <Suspense fallback={<p role="status">Loading terminal…</p>}>
+            <TerminalDemo onClose={close} />
+          </Suspense>
+        )}
       </dialog>
     </>
   )

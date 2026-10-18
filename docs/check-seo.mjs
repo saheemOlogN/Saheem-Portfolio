@@ -8,7 +8,7 @@ assert.match(
 )
 assert.match(html, /<div id="root"><\/div>/)
 assert.ok(!html.includes('<h1>Saheem Nakhwa — Full-Stack Developer</h1>'))
-assert.match(html, /<noscript>/)
+assert.match(html, /<noscript\s*>/)
 const schema = JSON.parse(
   html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1],
 )

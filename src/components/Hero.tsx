@@ -1,7 +1,6 @@
 import { useReducedMotion } from './MotionPreference'
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
-import DecryptedText from './DecryptedText'
 import ClickSpark from './ClickSpark'
 import { profile } from '../data'
 import './Hero.css'
@@ -88,19 +87,7 @@ export function Hero() {
         <div className="hero-intro">
           <h1 id="hero-title">
             <span className="hello-line">Hi, I’m</span>
-            <span className="name-line">
-              {reduced ? (
-                'Saheem.'
-              ) : (
-                <DecryptedText
-                  text="Saheem."
-                  animateOn="view"
-                  speed={40}
-                  maxIterations={4}
-                  characters="SAHEEM.01"
-                />
-              )}
-            </span>
+            <span className="name-line">Saheem.</span>
           </h1>
           <RoleType />
           <p className="hero-copy">

@@ -2,10 +2,11 @@ import { useReducedMotion } from './MotionPreference'
 import { useEffect, useState } from 'react'
 
 const phrases = [
-  'Full-Stack Developer.',
-  'Professional Shawarma Critic.',
-  '6.7 ahh IQ.',
-  'Building things. Chasing sleep.',
+  'Fullstack Web Developer',
+  'AI Engineer',
+  'Professional Shawarma Critic',
+  'Building things',
+  '6.7 ahh IQ',
 ]
 export default function RoleType() {
   const reduced = useReducedMotion(),

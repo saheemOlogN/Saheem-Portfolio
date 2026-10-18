@@ -1,5 +1,12 @@
 import { useReducedMotion } from './MotionPreference'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react'
 import {
   experience,
   projects,
@@ -13,8 +20,9 @@ import {
 import FadeContent from './FadeContent'
 import Character from './Character'
 import HireMe from './HireMe'
-import Activity from './Activity'
-import TargetCursor from './TargetCursor'
+import WhenNear from './WhenNear'
+const Activity = lazy(() => import('./Activity'))
+const TargetCursor = lazy(() => import('./TargetCursor'))
 import './Portfolio.css'
 
 function Heading({ line }: { line: string }) {
@@ -345,14 +353,18 @@ function Achievements() {
   return (
     <Chapter id="achievements">
       {!reduced && (
-        <TargetCursor
-          spinDuration={2}
-          hideDefaultCursor
-          parallaxOn
-          hoverDuration={0.2}
-          cursorColor="#ffffff"
-          cursorColorOnTarget="#B497CF"
-        />
+        <WhenNear>
+          <Suspense fallback={null}>
+            <TargetCursor
+              spinDuration={2}
+              hideDefaultCursor
+              parallaxOn
+              hoverDuration={0.2}
+              cursorColor="#ffffff"
+              cursorColorOnTarget="#B497CF"
+            />
+          </Suspense>
+        </WhenNear>
       )}
       <div id="side-quests-cursor">
         <Heading line="Side Quests" />
@@ -477,7 +489,11 @@ export default function Portfolio() {
       <Achievements />
       <Chapter id="activity">
         <Heading line="Small steps, committed." />
-        <Activity />
+        <WhenNear minHeight={280}>
+          <Suspense fallback={<p>Loading GitHub activity…</p>}>
+            <Activity />
+          </Suspense>
+        </WhenNear>
       </Chapter>
       <Contact />
     </div>
